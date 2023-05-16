@@ -25,6 +25,20 @@ module Decidim
         end
       end
 
+      config.to_prepare do
+        class OmniAuth::Strategies::KeycloakOpenId
+          uid { raw_info["preferred_username"] }
+
+          info do
+            {
+              nickname: raw_info["preferred_username"],
+              name: raw_info["name"],
+              email: raw_info["email"]
+            }
+          end
+        end
+      end
+
       initializer "decidim_keycloak.webpacker.assets_path" do
         Decidim.register_assets_path File.expand_path("app/packs", root)
       end

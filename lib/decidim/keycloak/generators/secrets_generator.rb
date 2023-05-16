@@ -32,7 +32,7 @@ module Decidim
                 |      icon_path: media/images/keycloak_logo.svg
                 |      client_id: fake-keycloakopenid-client-id
                 |      client_secret: fake-keycloakopenid-client-secret
-                |      site: fake-keycloakopenid-site
+                |      site: https://fake.keycloakopenid.site
                 |      realm: fake-keycloakopenid-realm
               YAML
                 .gsub(/^ *\|/, "").rstrip
