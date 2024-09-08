@@ -10,3 +10,4 @@ en:
             client_secret: Client secret
             realm: Realm
             site: Site
+            base_url: Base url
