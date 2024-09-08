@@ -20,7 +20,7 @@ module Decidim
 
             env["omniauth.strategy"].options[:client_id] = config[:client_id]
             env["omniauth.strategy"].options[:client_secret] = config[:client_secret]
-            env["omniauth.strategy"].options[:client_options] = { site: config[:site], realm: config[:realm] base_url: config[:base_url] }
+            env["omniauth.strategy"].options[:client_options] = { site: config[:site], realm: config[:realm], base_url: config[:base_url] }
           }
         end
       end
