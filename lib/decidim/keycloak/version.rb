@@ -5,6 +5,6 @@ module Decidim
   module Keycloak
     VERSION = "0.1.0"
     DECIDIM_VERSION = "0.28.4"
-    COMPAT_DECIDIM_VERSION = [">= 0.27.0", "< 0.29"].freeze
+    COMPAT_DECIDIM_VERSION = [">= 0.27.0", "< 0.30"].freeze
   end
 end
