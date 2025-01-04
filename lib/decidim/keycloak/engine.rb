@@ -17,13 +17,9 @@ module Decidim
             request = Rack::Request.new(env)
             organization = Decidim::Organization.find_by(host: request.host)
             config = organization.enabled_omniauth_providers[:keycloakopenid]
-            # remove the language parameter from the callback url
-            # env["omniauth.strategy"].options[:client_options][:redirect_uri] = request.url.split("?").first
-            #env["omniauth.strategy"].options[:name] = "Login with Keycloak" # replace with config name
-           # env["omniauth.strategy"].options[:callback_path] = request.url.split("?").first
             env["omniauth.strategy"].options[:client_id] = config[:client_id]
-            env["omniauth.strategy"].options[:client_secret] = config[:client_secret]
-            env["omniauth.strategy"].options[:client_options] = { site: config[:site], realm: config[:realm], base_url: config[:base_url], redirect_uri: request.url.split("?").first + "/callback" }
+            env["omniauth.strategy"].options[:client_secret] = config[:client_secret]       
+            env["omniauth.strategy"].options[:client_options] = { site: config[:site], realm: config[:realm], base_url: config[:base_url], redirect_uri: request.url.split("?").first + "/callback" } # remove the language parameter from the callback url
           }
         end
       end
