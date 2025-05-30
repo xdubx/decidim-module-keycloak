@@ -35,7 +35,7 @@ module Decidim
                 |      client_secret: fake-keycloakopenid-client-secret
                 |      site: https://fake.keycloakopenid.site
                 |      realm: fake-keycloakopenid-realm
-                |      base_url: fake-keycloakopenid-base-url
+                |      base_url: https://fake.keycloakopenid.site
               YAML
                 .gsub(/^ *\|/, "").rstrip
             end
