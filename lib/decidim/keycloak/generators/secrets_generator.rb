@@ -20,6 +20,7 @@ module Decidim
                 |      client_secret: <%= ENV["OMNIAUTH_KEYCLOAK_CLIENT_SECRET"] %>
                 |      site: <%= ENV["OMNIAUTH_KEYCLOAK_SITE"] %>
                 |      realm: <%= ENV["OMNIAUTH_KEYCLOAK_REALM"] %>
+                |      base_url: <%= ENV["OMNIAUTH_KEYCLOAK_BASE_URL"] %>
               YAML
                 .gsub(/^ *\|/, "").rstrip
             end
@@ -34,6 +35,7 @@ module Decidim
                 |      client_secret: fake-keycloakopenid-client-secret
                 |      site: https://fake.keycloakopenid.site
                 |      realm: fake-keycloakopenid-realm
+                |      base_url: fake-keycloakopenid-base-url
               YAML
                 .gsub(/^ *\|/, "").rstrip
             end
