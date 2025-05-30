@@ -31,6 +31,7 @@ Add to your `config/secrets.yml` the OAuth keys:
       client_secret: <%= ENV["OMNIAUTH_KEYCLOAK_CLIENT_SECRET"] %>
       site: <%= ENV["OMNIAUTH_KEYCLOAK_SITE"] %>
       realm: <%= ENV["OMNIAUTH_KEYCLOAK_REALM"] %>
+      base_url: <%= ENV["OMNIAUTH_KEYCLOAK_BASE_URL"] %>" 
 ```
 
 And add these environment variables:
