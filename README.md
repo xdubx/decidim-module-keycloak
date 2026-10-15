@@ -127,6 +127,19 @@ verified OmniAuth callback (never from form params). An existing different
 value is never overwritten, and a `sub` already used by another identity of
 the organization is not set; both cases are logged as warnings.
 
+To audit identities created before this migration, run:
+
+```bash
+bin/rails keycloak:backfill_identity_sub
+```
+
+The task does not invent or require Keycloak Admin API credentials. This gem
+does not configure an Admin API client, and the existing Decidim identity
+stores `preferred_username` as `uid`, not the OIDC `sub`; therefore the task
+reports the number of Keycloak identities still lacking a `keycloak_sub` and
+leaves them unchanged. Each is populated from the verified callback on that
+user's next Keycloak login.
+
 ## Contributing
 
 See [Decidim](https://github.com/decidim/decidim).

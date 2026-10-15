@@ -5,9 +5,9 @@ en:
       organizations:
         omniauth_settings:
           keycloakopenid:
+            base_url: Base url
             client_id: Client ID
             client_options: Client options
             client_secret: Client secret
             realm: Realm
             site: Site
-            base_url: Base url

@@ -131,7 +131,7 @@ describe "Storing the Keycloak sub on the identity", type: :request do
       # registrations controller runs the after_action that would consume it;
       # use an unrelated, harmless registration to reach it without raising.
       host! other_organization.host
-      post "/omniauth_registrations.user", params: {
+      post "/en/omniauth_registrations", params: {
         user: { provider: "keycloakopenid", uid: "harmless", email: "harmless@example.org",
                 name: "Harmless Person", nickname: "harmless", tos_agreement: "1",
                 oauth_signature: Decidim::OmniauthRegistrationForm.create_signature("keycloakopenid", "harmless") }
@@ -155,7 +155,7 @@ describe "Storing the Keycloak sub on the identity", type: :request do
       callback!
       expect(Decidim::Identity.count).to eq(0)
 
-      post "/omniauth_registrations.user", params: {
+      post "/en/omniauth_registrations", params: {
         user: { provider: "keycloakopenid", uid: nickname, email: email, name: "John Doe", nickname: nickname,
                 tos_agreement: "1", oauth_signature: Decidim::OmniauthRegistrationForm.create_signature("keycloakopenid", nickname),
                 raw_data: { extra: { raw_info: { sub: "forged" } } }.to_json }
