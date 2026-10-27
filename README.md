@@ -101,6 +101,45 @@ You can use different values by organization. Configure it in `/system/organizat
 
 ![Login with Keycloak](examples/system_conf.gif)
 
+## Keycloak user id (`sub`) on identities
+
+The identity `uid` stays the Keycloak `preferred_username`, so existing logins
+are unaffected. In addition, the module stores the Keycloak user id (the OIDC
+`sub` claim) in `decidim_identities.keycloak_sub`. Integrations that need the
+stable Keycloak id (e.g. Nextcloud `user_oidc`, which names accounts after
+`sub`) can read it with:
+
+```ruby
+Decidim::Keycloak.sub_for(user)               # => "4f1c1a2e-..." or nil
+Decidim::Keycloak.sub_for(user, organization) # explicit organization
+identity.keycloak_sub                         # directly on Decidim::Identity
+```
+
+Install the migration in your application:
+
+```bash
+bundle exec rails decidim_keycloak:install:migrations
+bundle exec rails db:migrate
+```
+
+The value is filled on the next Keycloak login of each user, only from the
+verified OmniAuth callback (never from form params). An existing different
+value is never overwritten, and a `sub` already used by another identity of
+the organization is not set; both cases are logged as warnings.
+
+To audit identities created before this migration, run:
+
+```bash
+bin/rails keycloak:backfill_identity_sub
+```
+
+The task does not invent or require Keycloak Admin API credentials. This gem
+does not configure an Admin API client, and the existing Decidim identity
+stores `preferred_username` as `uid`, not the OIDC `sub`; therefore the task
+reports the number of Keycloak identities still lacking a `keycloak_sub` and
+leaves them unchanged. Each is populated from the verified callback on that
+user's next Keycloak login.
+
 ## Contributing
 
 See [Decidim](https://github.com/decidim/decidim).

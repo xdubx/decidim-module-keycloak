@@ -28,7 +28,7 @@ describe "Login page", type: :system do
     end
 
     it "has button" do
-      expect(page).to have_content "Sign in with Keycloakopenid"
+      expect(page).to have_content(/(Sign|Log) in with Keycloakopenid/)
     end
   end
 
@@ -40,7 +40,7 @@ describe "Login page", type: :system do
     end
 
     it "has no button" do
-      expect(page).not_to have_content "Sign in with Keycloakopenid"
+      expect(page).not_to have_content(/(Sign|Log) in with Keycloakopenid/)
     end
   end
 end
